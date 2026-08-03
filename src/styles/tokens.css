@@ -1,0 +1,36 @@
+:root, [data-theme="light"] {
+  --bg:#F8FAFC; --surf:#FFFFFF; --surf2:#F1F5F9; --side:#F1F5F9; --border:#E5E7EB; --divider:#EEF0F3; --hover:#EFF3F8;
+  --ink:#0F172A; --text:#1F2937; --muted:#475569; --dim:#64748B; --faint:#94A3B8;
+  --primary:#2563EB; --primaryHover:#1D4ED8; --primaryPress:#1E40AF; --primarySoft:#EFF6FF; --primaryBorder:#BFDBFE; --primaryInk:#1E3A8A;
+  --success:#16A34A; --successSoft:#ECFDF5; --successBorder:#BBF7D0; --successInk:#065F46;
+  --warn:#D97706; --warnSoft:#FFFBEB; --warnBorder:#FDE68A; --warnInk:#78350F;
+  --danger:#DC2626; --dangerSoft:#FEF2F2; --dangerBorder:#FECACA; --dangerInk:#7F1D1D;
+  --violet:#7C3AED; --violetSoft:#F5F3FF; --violetBorder:#DDD6FE;
+  --teal:#0D9488; --tealSoft:#F0FDFA; --tealBorder:#99F6E4;
+  --amber:#B45309; --amberSoft:#FFFBEB; --amberBorder:#FDE68A;
+  --focus:0 0 0 3px rgba(37,99,235,.22);
+  --shadowSm:0 1px 2px rgba(15,23,42,.06);
+  --shadowMd:0 8px 24px -8px rgba(15,23,42,.10), 0 3px 8px -2px rgba(15,23,42,.06);
+  --shadowLg:0 24px 48px -12px rgba(15,23,42,.16), 0 6px 18px -6px rgba(15,23,42,.08);
+  --logoImg: url('../assets/meridian-dark.png');
+  --avatar: linear-gradient(135deg,#1E293B,#334155);
+  color-scheme: light;
+}
+[data-theme="dark"] {
+  --bg:#0B111F; --surf:#111827; --surf2:#0F1626; --side:#0E1524; --border:rgba(255,255,255,.08); --divider:rgba(255,255,255,.06); --hover:rgba(255,255,255,.05);
+  --ink:#F8FAFC; --text:#E5E7EB; --muted:#B0B7C3; --dim:#8B94A5; --faint:#5E6778;
+  --primary:#3B82F6; --primaryHover:#60A5FA; --primaryPress:#2563EB; --primarySoft:rgba(59,130,246,.16); --primaryBorder:rgba(59,130,246,.34); --primaryInk:#BFDBFE;
+  --success:#34D399; --successSoft:rgba(52,211,153,.14); --successBorder:rgba(52,211,153,.28); --successInk:#A7F3D0;
+  --warn:#F59E0B; --warnSoft:rgba(245,158,11,.14); --warnBorder:rgba(245,158,11,.28); --warnInk:#FDE68A;
+  --danger:#F87171; --dangerSoft:rgba(248,113,113,.14); --dangerBorder:rgba(248,113,113,.28); --dangerInk:#FCA5A5;
+  --violet:#A78BFA; --violetSoft:rgba(167,139,250,.14); --violetBorder:rgba(167,139,250,.28);
+  --teal:#2DD4BF; --tealSoft:rgba(45,212,191,.14); --tealBorder:rgba(45,212,191,.28);
+  --amber:#FBBF24; --amberSoft:rgba(251,191,36,.14); --amberBorder:rgba(251,191,36,.28);
+  --focus:0 0 0 3px rgba(59,130,246,.34);
+  --shadowSm:0 1px 2px rgba(0,0,0,.5);
+  --shadowMd:0 8px 24px -6px rgba(0,0,0,.55), 0 3px 8px -2px rgba(0,0,0,.4);
+  --shadowLg:0 28px 56px -14px rgba(0,0,0,.7), 0 6px 18px -6px rgba(0,0,0,.5);
+  --logoImg: url('../assets/meridian-light.png');
+  --avatar: linear-gradient(135deg,#334155,#64748B);
+  color-scheme: dark;
+}
