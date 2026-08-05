@@ -238,9 +238,11 @@ img,svg,video,iframe{max-width:100%;height:auto}
   .club-item b{font-size:16px}
   .club-item span{font-size:13px}
   #access .h2{max-width:none}
-  .quota-final{padding:28px 22px;border-radius:18px}
-  .closed-final-grid{gap:28px}
-  .closed-final .h2{font-size:32px}
+  .quota-final{padding:28px 22px;border-radius:18px;max-width:100%;box-sizing:border-box}
+  .closed-final-grid{gap:28px;min-width:0;max-width:100%}
+  .closed-final-grid>*{min-width:0;max-width:100%}
+  .closed-final .h2{font-size:32px;overflow-wrap:anywhere}
+  .closed-final .lead{overflow-wrap:anywhere}
   .closed-final-status{margin-top:22px}
   .site-footer{padding:30px 0 34px}
   .site-footer-inner{gap:22px}
@@ -259,7 +261,12 @@ img,svg,video,iframe{max-width:100%;height:auto}
   .lead{font-size:17px}
   .control-card{padding:21px}
   .control-card h3{font-size:27px}
-  .quota-final{padding:25px 19px}
+  .quota-final{padding:25px 16px;max-width:100%;box-sizing:border-box}
+  .closed-final-grid,.closed-final-grid>*{min-width:0;max-width:100%}
+  .closed-final .h2,.closed-final .lead,.closed-final .eyebrow,.closed-final .btn-disabled{
+    max-width:100%;overflow-wrap:anywhere;word-break:normal
+  }
+  .closed-final .actions{width:100%;max-width:100%}
 }
 
 </style>
