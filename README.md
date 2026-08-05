@@ -1,19 +1,15 @@
-# meridian.
+# Meridian website
 
-Micro-SaaS CRM and booking UI for solo specialists.
+Готовая статическая версия сайта для GitHub Pages.
 
-## Structure
+## Публикация
 
-- `prototype/` — approved visual reference (`App.dc.html`). Do not edit during migration.
-- `src/` — React + TypeScript + Vite application.
+1. Загрузите содержимое этой папки в корень GitHub-репозитория.
+2. Откройте **Settings → Pages**.
+3. В разделе **Build and deployment** выберите **Deploy from a branch**.
+4. Выберите ветку `main` и папку `/ (root)`.
+5. Сохраните настройки.
 
-## Scripts
+Файл `CNAME` уже содержит домен `meridianapp.ru`. Для подключения домена также настройте DNS у регистратора по инструкции GitHub Pages.
 
-```bash
-npm install
-npm run dev
-npm run build
-npm run lint
-```
-
-App runs with HashRouter (`#/dashboard`, `#/login`, …).
+Сайт не собирает email и не подключает аналитику.
