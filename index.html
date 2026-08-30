@@ -53,6 +53,8 @@ nav.scrolled{border-color:var(--line)}
 .brand img{height:25px;width:auto;display:block}
 .navlinks{display:flex;gap:25px;align-items:center;font-size:13px}
 .navlinks a{color:#4f4f4b}
+.nav-login{border:1px solid var(--line);border-radius:999px;padding:10px 15px;color:var(--ink)!important}
+.nav-login:hover{background:#fff;border-color:var(--ink)}
 .navcta{border:1px solid var(--ink);border-radius:999px;padding:10px 15px;color:var(--ink)!important}
 .navcta:hover{background:#111;color:white!important}
 .investor-link{border:1px solid var(--line);border-radius:999px;padding:10px 15px}
@@ -67,8 +69,10 @@ nav.scrolled{border-color:var(--line)}
 .hero-actions{display:flex;gap:12px;justify-content:flex-end;flex-wrap:wrap}
 .btn{display:inline-flex;min-height:56px;align-items:center;justify-content:center;border:1px solid var(--ink);border-radius:999px;padding:0 20px;font-size:13px;transition:.22s}
 .btn.primary{background:#111;color:white;font-weight:720}
+.btn.secondary{background:transparent;color:#111}
 .btn:hover{transform:translateY(-2px)}
 .btn.primary:hover{background:var(--blue);color:white;border-color:var(--blue)}
+.btn.secondary:hover{background:#fff}
 
 /* central product demo */
 .product-demo{padding:110px 0 135px;border-bottom:1px solid var(--line)}
@@ -167,7 +171,7 @@ body.cursor-ready .cursor{opacity:1}
 
 @media(max-width:900px){
  .wrap{width:min(100% - 28px,1440px)}
- .navlinks a:not(.navcta):not(.investor-link){display:none}
+ .navlinks a:not(.navcta):not(.nav-login):not(.investor-link){display:none}
  .hero{min-height:auto;padding-top:120px}
  .hero-sub,.investor-grid,.final-grid{grid-template-columns:1fr}
  .hero-actions{justify-content:flex-start}
@@ -272,6 +276,8 @@ body.cursor-ready .cursor{opacity:1}
  <div class="navlinks">
   <a href="#demo">Как работает</a>
   <a href="#scenarios">Сценарии</a>
+  <a class="nav-login magnet" href="https://cabinet.meridianapp.ru/login">Войти</a>
+  <a class="navcta magnet" href="https://cabinet.meridianapp.ru/register">Зарегистрироваться</a>
  </div>
 </div></nav>
 
@@ -282,7 +288,8 @@ body.cursor-ready .cursor{opacity:1}
   <div class="hero-sub">
    <div class="hero-copy">Клиенты, расписание, оплаты и ежедневная работа — через один диалог.</div>
    <div class="hero-actions">
-    <a class="btn primary magnet" href="#demo">Посмотреть, как работает</a>
+    <a class="btn primary magnet" href="https://cabinet.meridianapp.ru/register">Зарегистрироваться</a>
+    <a class="btn secondary" href="https://cabinet.meridianapp.ru/login">Войти</a>
    </div>
   </div>
  </div>
@@ -426,6 +433,7 @@ body.cursor-ready .cursor{opacity:1}
   <h2 class="reveal">Meridian — AI-система управления бизнесом.</h2>
   <div class="final-side reveal">
    <p>Вы ставите задачу. Meridian работает с клиентами, расписанием, оплатами и данными — и показывает результат перед выполнением важного действия.</p>
+   <a class="final-btn" href="https://cabinet.meridianapp.ru/register">Зарегистрироваться</a>
   </div>
  </div>
 </section>
