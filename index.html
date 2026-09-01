@@ -468,15 +468,14 @@ body.cursor-ready .cursor{opacity:1}
       <details><summary>Вы сами отправляете сообщения?</summary><p>Нет. Meridian готовит список и тексты. Отправка происходит только после подтверждения.</p></details>
       <details><summary>Сколько это стоит?</summary><p>Первый разбор базы — бесплатно. Дальше цена зависит от объёма базы и способа подключения.</p></details>
     </div>
-    <form class="lead-form" method="post" action="https://cabinet.meridianapp.ru/login?next=/cabinet">
-      <h3>Вход в кабинет</h3>
-      <p class="form-note">Почта и пароль с регистрации. После входа откроется кабинет.</p>
-      <div class="lead-error" id="loginError">Неверная почта или пароль.</div>
-      <label>Почта или логин<input name="username" type="text" autocomplete="username" required placeholder="you@salon.ru"></label>
-      <label>Пароль<input name="password" type="password" autocomplete="current-password" required></label>
-      <button type="submit">Войти</button>
-      <p class="form-note">Нет входа? <a href="https://cabinet.meridianapp.ru/register">Зарегистрироваться</a></p>
-    </form>
+    <div class="lead-form">
+      <h3>Оставьте заявку или войдите</h3>
+      <p class="form-note">Регистрация создаёт вход по почте и паролю. Дальше можно войти теми же данными.</p>
+      <div class="lead-choice">
+        <a class="primary" href="https://cabinet.meridianapp.ru/register">Зарегистрироваться</a>
+        <a class="secondary" href="https://cabinet.meridianapp.ru/login">Войти</a>
+      </div>
+    </div>
   </div>
  </div>
 </section>
