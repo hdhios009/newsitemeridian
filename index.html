@@ -269,7 +269,7 @@ body.cursor-ready .cursor{opacity:1}
 .problem-list{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:70px}
 .problem-card{min-height:360px;border:1px solid var(--line);border-radius:26px;background:white;padding:28px;display:flex;flex-direction:column;justify-content:space-between}
 .problem-card h3{font-size:18px;margin:0}.problem-card p{font-size:clamp(25px,2.4vw,38px);line-height:1.05;letter-spacing:-.045em;margin:50px 0 0}.problem-card span{border-top:1px solid var(--line);padding-top:17px;color:#666;line-height:1.45;font-size:14px;display:block}
-.pilot-grid{display:grid;grid-template-columns:1fr .9fr;gap:70px;align-items:start;margin-top:70px}.lead-form{background:#fff;border:1px solid var(--line);border-radius:28px;padding:28px;display:grid;gap:14px}.lead-form label{font-size:12px;color:var(--muted);display:grid;gap:7px}.lead-form input{height:52px;border:1px solid var(--line);border-radius:999px;background:var(--bg);padding:0 18px;font:inherit;color:var(--ink);outline:none}.lead-form input:focus{border-color:var(--ink);background:#fff}.lead-form button{height:56px;border:1px solid var(--ink);border-radius:999px;background:#111;color:white;font-weight:720;cursor:pointer}.lead-choice{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px}.lead-choice a{height:52px;display:inline-flex;align-items:center;justify-content:center;border-radius:999px;padding:0 18px;font-size:13px;font-weight:720}.lead-choice .primary{background:#111;color:#fff;border:1px solid #111}.lead-choice .secondary{background:var(--bg);color:#111;border:1px solid var(--line)}.form-note{color:var(--muted);font-size:12px;line-height:1.45;margin:0}.faq{margin-top:70px;border-top:1px solid var(--line)}.faq details{border-bottom:1px solid var(--line);padding:24px 0}.faq summary{cursor:pointer;font-size:22px;letter-spacing:-.03em;font-weight:720}.faq p{margin:14px 0 0;max-width:760px;color:var(--muted);line-height:1.55}.final-side .final-note{font-size:12px;color:#888;margin-top:16px}.btn.secondary{background:transparent;color:#111}.lead-error{display:none;padding:10px 12px;border:1px solid #E7C9C9;background:#FBECEC;color:#8A2A2A;border-radius:14px;font-size:12px;line-height:1.45}.lead-error.on{display:block}.lead-form h3{font-size:24px;line-height:1.05;letter-spacing:-.04em;margin:0}.lead-form .demo-creds{padding:12px 14px;border:1px solid var(--line);border-radius:18px;background:var(--bg);font-size:12px;line-height:1.5;color:var(--muted)}
+.pilot-grid{display:grid;grid-template-columns:1fr .9fr;gap:70px;align-items:start;margin-top:70px}.lead-form{background:#fff;border:1px solid var(--line);border-radius:28px;padding:28px;display:grid;gap:14px}.lead-form label{font-size:12px;color:var(--muted);display:grid;gap:7px}.lead-form input{height:52px;border:1px solid var(--line);border-radius:999px;background:var(--bg);padding:0 18px;font:inherit;color:var(--ink);outline:none}.lead-form input:focus{border-color:var(--ink);background:#fff}.lead-form button{height:56px;border:1px solid var(--ink);border-radius:999px;background:#111;color:white;font-weight:720;cursor:pointer}.lead-choice{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px}.lead-choice a{height:52px;display:inline-flex;align-items:center;justify-content:center;border-radius:999px;padding:0 18px;font-size:13px;font-weight:720}.lead-choice .primary{background:#111;color:#fff;border:1px solid #111}.lead-choice .secondary{background:var(--bg);color:#111;border:1px solid var(--line)}.form-note{color:var(--muted);font-size:12px;line-height:1.45;margin:0}.form-note a{color:var(--ink);text-decoration:underline}.faq{margin-top:70px;border-top:1px solid var(--line)}.faq details{border-bottom:1px solid var(--line);padding:24px 0}.faq summary{cursor:pointer;font-size:22px;letter-spacing:-.03em;font-weight:720}.faq p{margin:14px 0 0;max-width:760px;color:var(--muted);line-height:1.55}.final-side .final-note{font-size:12px;color:#888;margin-top:16px}.btn.secondary{background:transparent;color:#111}.lead-error{display:none;padding:10px 12px;border:1px solid #E7C9C9;background:#FBECEC;color:#8A2A2A;border-radius:14px;font-size:12px;line-height:1.45}.lead-error.on{display:block}.lead-form h3{font-size:24px;line-height:1.05;letter-spacing:-.04em;margin:0}.lead-form .demo-creds{padding:12px 14px;border:1px solid var(--line);border-radius:18px;background:var(--bg);font-size:12px;line-height:1.5;color:var(--muted)}
 @media(max-width:900px){.problem-list,.pilot-grid{grid-template-columns:1fr}.problem-card{min-height:300px}.pilot-grid{gap:34px}.hero-trust{font-size:13px}.faq summary{font-size:19px}}
 
 @media(max-width:700px){
@@ -468,14 +468,15 @@ body.cursor-ready .cursor{opacity:1}
       <details><summary>Вы сами отправляете сообщения?</summary><p>Нет. Meridian готовит список и тексты. Отправка происходит только после подтверждения.</p></details>
       <details><summary>Сколько это стоит?</summary><p>Первый разбор базы — бесплатно. Дальше цена зависит от объёма базы и способа подключения.</p></details>
     </div>
-    <div class="lead-form">
-      <h3>Оставьте заявку или войдите</h3>
-      <p class="form-note">Регистрация: имя, бизнес, почта и пароль. После создания входа на почту приходит код — без него кабинет не откроется.</p>
-      <div class="lead-choice">
-        <a class="primary" href="https://cabinet.meridianapp.ru/register">Зарегистрироваться</a>
-        <a class="secondary" href="https://cabinet.meridianapp.ru/login">Войти</a>
-      </div>
-    </div>
+    <form class="lead-form" method="post" action="https://cabinet.meridianapp.ru/login?next=/cabinet">
+      <h3>Вход в кабинет</h3>
+      <p class="form-note">Почта и пароль с регистрации. После входа откроется кабинет.</p>
+      <div class="lead-error" id="loginError">Неверная почта или пароль.</div>
+      <label>Почта или логин<input name="username" type="text" autocomplete="username" required placeholder="you@salon.ru"></label>
+      <label>Пароль<input name="password" type="password" autocomplete="current-password" required></label>
+      <button type="submit">Войти</button>
+      <p class="form-note">Нет входа? <a href="https://cabinet.meridianapp.ru/register">Зарегистрироваться</a></p>
+    </form>
   </div>
  </div>
 </section>
