@@ -160,7 +160,10 @@ section{padding:130px 0;border-bottom:1px solid var(--line)}
 .final-btn{display:inline-flex;height:62px;align-items:center;justify-content:center;border-radius:999px;background:#111;color:white;padding:0 22px;font-weight:720}
 
 footer{border-top:1px solid var(--line);padding:28px 0 48px;color:#777;font-size:12px}
-.foot{display:flex;justify-content:space-between;gap:20px}
+.foot{display:flex;justify-content:space-between;gap:20px;align-items:flex-start}
+.foot-legal{display:flex;flex-wrap:wrap;gap:8px 18px;justify-content:flex-end}
+.foot-legal a{color:#777;text-decoration:none}
+.foot-legal a:hover{color:#111;text-decoration:underline}
 
 .cursor{position:fixed;z-index:250;width:12px;height:12px;border-radius:50%;background:var(--blue);pointer-events:none;transform:translate(-50%,-50%);display:none;opacity:0;transition:width .16s,height .16s,opacity .16s}
 body.cursor-ready .cursor{opacity:1}
@@ -187,6 +190,7 @@ body.cursor-ready .cursor{opacity:1}
  .scenario{min-height:310px}
  .imp-row{grid-template-columns:1fr;gap:12px}
  .foot{flex-direction:column}
+ .foot-legal{justify-content:flex-start;margin-top:6px}
 }
 @media(prefers-reduced-motion:reduce){
  *,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
@@ -495,6 +499,13 @@ body.cursor-ready .cursor{opacity:1}
 <footer>
   <div class="wrap foot">
     <span>© 2026 Meridian</span>
+    <nav class="foot-legal" aria-label="Правовая информация">
+      <a href="https://cabinet.meridianapp.ru/privacy">Политика обработки данных</a>
+      <a href="https://cabinet.meridianapp.ru/terms">Пользовательское соглашение</a>
+      <a href="https://cabinet.meridianapp.ru/consent">Согласие на обработку данных</a>
+      <a href="https://cabinet.meridianapp.ru/deletion">Удаление данных</a>
+      <a href="https://cabinet.meridianapp.ru/security">Защита данных</a>
+    </nav>
   </div>
 </footer>
 
