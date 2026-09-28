@@ -1,0 +1,58 @@
+[
+  {
+    "name": "claude",
+    "source_page": "https://claude.com/",
+    "image_url": "https://assets.claude.com/95a868946ac8a31e5ff832e2899f294aa368b836.png?w=32&h=32",
+    "path": "claude.png",
+    "content_type": "image/png",
+    "bytes": 1198,
+    "sha256": "4004381309500f25e49a1ae639912ce307ea81da74cc383954a1ac8b9d343fe6",
+    "usage": "Official orange Claude starburst, 32 x 32 transparent PNG; display about 20–24 px.",
+    "verified_date": "2026-09-12"
+  },
+  {
+    "name": "openai",
+    "source_page": "https://openai.com/brand/",
+    "image_url": "https://cdn.openai.com/brand/openai-logos.zip",
+    "path": "openai-blossom.svg",
+    "content_type": "image/svg+xml",
+    "bytes": 2415,
+    "sha256": "75c1e9fffa5e8c437bec1d67197a73992bca45d166c6ff23215185dea8fae92a",
+    "archive_member": "OpenAI-logos/SVGs/OAI_OpenAI-Blossom_Black.svg",
+    "usage": "Black official Blossom; preserve colors, aspect ratio and whitespace. The 716-square canvas includes generous official padding: display at about 40 px to achieve a 20 px visible mark.",
+    "verified_date": "2026-09-12"
+  },
+  {
+    "name": "gemini",
+    "source_page": "https://gemini.google.com/",
+    "image_url": "https://www.gstatic.com/lamda/images/gemini_sparkle_aurora_33f86dc0c0257da337c63.svg",
+    "path": "gemini.svg",
+    "content_type": "image/svg+xml",
+    "bytes": 27794,
+    "sha256": "f56df33f86dc0c0257da337c63bf7ad68c0a1b27b796ec707e147984351bccb3",
+    "usage": "Official current full-color Gemini sparkle, 192 x 192 viewBox; preserve gradient. Display about 22–24 px.",
+    "verified_date": "2026-09-12"
+  },
+  {
+    "name": "deepseek",
+    "source_page": "https://api-docs.deepseek.com/",
+    "image_url": "https://api-docs.deepseek.com/img/favicon.svg",
+    "path": "deepseek.svg",
+    "content_type": "image/svg+xml",
+    "bytes": 3652,
+    "sha256": "0bf5e13ce954f13423a692f083f5cb0f4bcfde35c8b812f64efe89dabfdaed20",
+    "usage": "Blue whale; wide original aspect ratio 63.119629 / 46.403320. Use object-fit:contain; do not stretch square.",
+    "verified_date": "2026-09-12"
+  },
+  {
+    "name": "qwen",
+    "source_page": "https://qwen.ai/",
+    "image_url": "https://img.alicdn.com/imgextra/i4/O1CN01OXv3EM1FN8t9W4P79_!!6000000000474-2-tps-80-80.png",
+    "path": "qwen.png",
+    "content_type": "image/png",
+    "bytes": 1658,
+    "sha256": "cd9390bc4209c319121d111f3a1f535b3c7dd909b8f860d41acc9744138d58df",
+    "usage": "Official current Qwen blue geometric mark, 80 x 80 transparent PNG; display about 22–24 px.",
+    "verified_date": "2026-09-12"
+  }
+]

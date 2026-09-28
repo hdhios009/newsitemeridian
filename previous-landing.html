@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="description" content="Meet Meridian Council. Bring different AI models together to propose, challenge, and refine an idea. Explore the interactive product preview.">
+  <title>Meridian Council — A meeting of minds.</title>
+  <link rel="icon" href="favicon.svg?v=3" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css?v=13">
+  <link rel="stylesheet" href="council.css?v=13">
+  <link rel="stylesheet" href="council-motion.css?v=13">
+  <link rel="stylesheet" href="landing-finish.css?v=13">
+  <link rel="stylesheet" href="account-ui.css?v=13">
+  <script src="council-content.js?v=13" defer></script>
+  <script src="council-engine.js?v=13" defer></script>
+  <script src="council-motion.js?v=13" defer></script>
+  <link rel="stylesheet" href="council-cinema.css?v=13">
+  <script src="council-cinema.js?v=13" defer></script>
+  <script src="app.js?v=13" defer></script>
+  <script src="account-ui.js?v=13" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#overview">Skip to content</a>
+  <header class="site-header">
+    <div class="nav-inner">
+      <a class="brand" href="#overview" aria-label="Meridian home">meridian</a>
+      <nav aria-label="Main navigation"><a href="#experience">The experience</a><a href="#the-outcome">The outcome</a><a href="#your-council">Your council</a><a href="#pricing">Pricing</a></nav>
+      <div class="nav-actions"><div class="language-switch" role="group" aria-label="Language"><button type="button" data-language="en" lang="en" aria-pressed="true">EN</button><button type="button" data-language="ru" lang="ru" aria-pressed="false">RU</button></div><button type="button" class="nav-login" data-auth="login">Log in</button><button type="button" class="button button-small" data-auth="signup">Sign up</button></div>
+    </div>
+  </header>
+  <main id="overview">
+    <section class="hero" aria-labelledby="hero-title">
+      <p class="product-name">Meridian Council</p>
+      <h1 id="hero-title"><span class="headline-first">A meeting</span> <span class="spectrum-text">of minds.</span></h1>
+      <p class="hero-description">Different AI models. One shared question.<br>Challenge the assumptions. Find your next move.</p>
+      <div class="hero-actions"><a class="button" href="#experience">Explore Council</a><button type="button" class="text-link text-button" data-auth="signup">Create an account <span aria-hidden="true">›</span></button></div>
+      <p class="hero-reassurance">Free interactive demo. No sign-up required.</p>
+    </section>
+
+    <section class="experience-section" id="experience" aria-labelledby="experience-title">
+      <div class="section-inner">
+        <h2 id="experience-title" class="sr-only">See Council in action</h2>
+        <div class="demo-window council-lab" id="council-lab">
+          <div class="window-bar">
+            <span class="window-wordmark">Council</span>
+            <div class="example-picker" role="group" aria-label="Choose an example"><button type="button" data-scenario="startup" aria-pressed="true">A market</button><button type="button" data-scenario="product" aria-pressed="false">A product</button><button type="button" data-scenario="engineering" aria-pressed="false">The code</button></div>
+            <div class="experience-actions"><span class="sample-badge">Demo</span><button type="button" class="text-link text-button outcome-shortcut" id="see-outcome">See the outcome <span aria-hidden="true">›</span></button></div>
+            <span class="sr-only" id="autoplay-note">Automatic preview</span>
+          </div>
+          <div class="question-display"><span class="question-label sr-only">The question on the table</span><h3 id="sample-question">Who will pay for our app?</h3><p class="question-context" id="question-context"></p></div>
+          <div class="council-stage" id="council-stage" data-phase="proposal" data-playing="false" data-final="false" aria-label="Interactive map of the council">
+            <canvas class="network-canvas" id="network-canvas" aria-hidden="true"></canvas>
+            <div class="exchange-caption" id="exchange-caption" aria-hidden="true"><span id="caption-route"></span><strong id="caption-argument"></strong></div>
+            <svg class="council-connections" id="council-connections" viewBox="0 0 1000 530" preserveAspectRatio="none" aria-hidden="true"><g id="connection-lines"></g><path id="exchange-line" class="exchange-line"/><path id="exchange-travel" class="exchange-travel"/></svg>
+            <div class="agent-layer" id="agent-layer"></div>
+            <div class="council-core" id="council-core"><div class="core-heading"><p class="core-eyebrow" id="core-eyebrow">Explore the possibilities</p><h4 id="core-title">Three ways in.</h4><p class="core-copy" id="core-copy"></p></div><div id="cinema-content" class="cinema-content"></div><div class="core-contributions" id="core-contributions"></div><div class="core-bottom"><p class="core-counter" id="core-counter"></p><button type="button" class="text-button text-link" id="jump-decision">See the shared decision <span aria-hidden="true">›</span></button></div></div>
+          </div>
+          <div class="council-controls"><div class="control-top"><div class="phase-navigation" role="group" aria-label="Conversation stage"><button type="button" data-phase="research" aria-pressed="true">Explore</button><button type="button" data-phase="proposal" aria-pressed="false">Propose</button><button type="button" data-phase="challenge" aria-pressed="false">Debate</button><button type="button" data-phase="revision" aria-pressed="false">Compare</button><button type="button" data-phase="synthesis" aria-pressed="false">Decide</button></div><button type="button" class="motion-toggle" id="motion-toggle" aria-pressed="false" aria-label="Pause animation"><svg class="pause-glyph" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6v12M15 6v12"/></svg><svg class="play-glyph" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 11 7-11 7Z"/></svg><span class="sr-only" id="motion-label">Pause animation</span></button></div><div class="council-playhead"><button type="button" id="previous-event" class="icon-button" aria-label="Previous argument"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m14 6-6 6 6 6"/></svg></button><label for="council-scrubber" class="sr-only">Move through the conversation</label><input id="council-scrubber" type="range" min="0" max="16" step="1" value="0"><button type="button" id="next-event" class="icon-button" aria-label="Next argument"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m10 6 6 6-6 6"/></svg></button><span id="playback-status" class="playback-status">Ready to explore</span></div></div>
+          <div class="participants-control"><span>At the table</span><div class="council-roster" id="council-roster" role="group" aria-label="Choose two to five participants"></div></div>
+          <details class="conversation-notes" id="conversation-notes"><summary><span id="conversation-notes-label">Read the exchange</span><span class="notes-chevron" aria-hidden="true">⌄</span></summary><div class="exchange-panel" id="exchange-panel"><div class="exchange-heading"><div id="exchange-byline" class="exchange-byline"></div><span class="evidence-label" id="event-evidence"></span><span id="exchange-position"></span></div><p id="exchange-text" class="exchange-text"></p><button type="button" id="reply-context" class="reply-context" hidden></button></div><div class="decision-detail" id="decision-detail" hidden><p class="decision-detail-label">What each perspective brought</p><div class="contribution-list" id="contribution-list"></div><p class="open-question"><strong>Still open:</strong> <span id="open-question"></span></p><button class="text-link text-button" type="button" id="copy-brief">Copy this sample decision <span aria-hidden="true">↗</span></button></div></details>
+          <p class="demo-disclosure">Scripted preview. Live AI is not connected.</p>
+        </div>
+        <p class="experience-footnote">Different opinions can reveal different trade-offs. Agreement is not a guarantee of accuracy.</p>
+      </div>
+    </section>
+
+    <section class="outcome-band" id="the-outcome" aria-labelledby="outcome-heading"><div class="outcome-section section-inner">
+      <div class="section-intro outcome-intro"><p class="eyebrow">What you take away</p><h2 id="outcome-heading">A direction.<br><span class="soft">And a reason why.</span></h2><p class="section-description">The discussion ends with a shared recommendation, a practical next step, and what still needs your judgment.</p><a class="text-link" href="#experience">Follow the discussion <span aria-hidden="true">›</span></a></div>
+      <article class="outcome-preview" aria-labelledby="outcome-title"><div class="outcome-topline"><span class="outcome-wordmark">Council brief</span><span class="sample-badge">Sample output</span></div><h3 id="outcome-title">One problem. One useful first step.</h3><p id="outcome-summary">Choose a specific customer, build the smallest useful version, and offer a paid pilot. Let real use guide what you build next.</p><div class="outcome-next"><p class="outcome-label">Your next step</p><p id="outcome-action">Test one useful task with a simple prototype before building the full app.</p></div><div class="outcome-open"><p class="outcome-label">Still worth testing</p><p id="outcome-question">Is the problem important enough for someone to pay to solve it?</p></div><p class="outcome-note">An example from the selected discussion.</p></article>
+    </div></section>
+
+    <section class="council-section section-inner" id="your-council" aria-labelledby="council-title">
+      <div class="section-intro centered"><p class="eyebrow">Your council</p><h2 id="council-title">Different minds.<br><span class="soft">Room to disagree.</span></h2><p class="section-description">Choose two to five participants.<br>See how their perspectives fit together in the preview.</p></div>
+      <div class="model-selection" id="model-selection" role="group" aria-label="Choose council participants"></div>
+      <p class="selection-status" id="selection-status" role="status">4 perspectives selected</p>
+      <div class="council-principles"><article><span class="principle-index">01</span><h3>See another angle.</h3><p>Compare different starting points before settling on a direction.</p></article><article><span class="principle-index">02</span><h3>Find the weak assumption.</h3><p>Follow the objections and see what changes in the recommendation.</p></article><article><span class="principle-index">03</span><h3>Know what to do next.</h3><p>Leave with a focused next step and the questions that remain open.</p></article></div>
+      <a class="text-link council-back-link" href="#experience">See this council in the demo <span aria-hidden="true">›</span></a>
+    </section>
+
+    <section class="pricing-section section-inner" id="pricing" aria-labelledby="pricing-title">
+      <div class="section-intro centered"><p class="eyebrow">Room to think</p><h2 id="pricing-title">Start curious.<br>Go from there.</h2><p class="section-description">The preview is free.<br>Live discussions are the next chapter.</p></div>
+      <div class="pricing-grid"><article class="price-card"><div class="plan-heading"><p class="plan-name">Explore</p><span class="available-badge">Try it now</span></div><h3>Free</h3><p>See the whole process, from question to decision.</p><ul><li>Three sample conversations</li><li>Your choice of 2–5 participants</li><li>A shared brief you can copy</li></ul><a class="button" href="#experience">Explore Council</a><span class="plan-caption">No account. No card. No AI keys needed.</span></article><article class="price-card"><div class="plan-heading"><p class="plan-name">Council</p><span class="planned-badge">Planned</span></div><h3>$19<span> / month</span></h3><p>A place for your own questions.</p><ul><li>Live conversations across models</li><li>A monthly usage budget</li><li>Extra usage when you need it</li></ul><button type="button" class="button button-outline" data-auth="signup">Preview sign up</button><span class="plan-caption">Proposed price. Usage limits are still being tested. No payments are collected here.</span></article></div>
+    </section>
+    <section class="faq-section section-inner" aria-labelledby="landing-faq-title"><div class="section-intro"><p class="eyebrow">Before you begin</p><h2 id="landing-faq-title">Questions,<br><span class="soft">answered.</span></h2></div><div id="landing-faq" class="landing-faq"></div></section>
+    <section class="closing-section section-inner"><div class="closing-spectrum" aria-hidden="true"></div><p class="eyebrow">Meridian Council</p><h2>Your next decision<br>deserves a discussion.</h2><p>Start with an idea, a product question, or a technical choice.</p><div class="hero-actions"><a class="button" href="#experience">Explore Council</a><button type="button" class="text-link text-button" data-auth="signup">Create an account <span aria-hidden="true">›</span></button></div><p class="closing-note">Free interactive demo. No sign-up required.</p></section>
+    <footer class="site-footer"><div class="section-inner footer-inner"><a class="brand" href="#overview" aria-label="Meridian home">meridian</a><div><p>Multiple perspectives. Human judgment.</p><p class="brand-note">Model names and logos identify the examples; no affiliation is implied.</p></div><a href="#overview">Back to the top <span aria-hidden="true">↑</span></a></div><div class="section-inner footer-links"><button type="button" data-info="faq">FAQ</button><button type="button" data-info="privacy">Privacy</button><button type="button" data-info="terms">Demo terms</button><span>© 2026 Meridian Council</span></div></footer>
+  </main>
+  <dialog id="account-dialog" class="account-dialog" aria-labelledby="account-title" aria-describedby="account-preview-note"></dialog>
+  <dialog id="info-dialog" class="info-dialog" aria-labelledby="info-title"></dialog>
+  <div id="toast" class="toast" role="status"></div>
+  <noscript><p class="noscript">Enable JavaScript to play the sample conversation and change its participants.</p></noscript>
+</body>
+</html>

@@ -1,0 +1,7 @@
+{
+  "google-g.png": {
+    "source": "https://developers.google.com/identity/branding-guidelines",
+    "asset": "https://developers.google.com/static/identity/images/g-logo.png",
+    "use": "Google sign-in button icon; unmodified official asset"
+  }
+}
