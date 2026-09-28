@@ -37,6 +37,7 @@
   container.querySelector('[data-quote-next]').onclick=async e=>{
    if(inFlight)return;
    if(!readOnly&&!update(container.querySelector('#wallet-credits').value)){container.querySelector('#wallet-credits').focus();return;}
+   if(CouncilSession.status!=='authenticated'){CouncilSession.reveal();return;}
    U.write('wallet-topup',order,true);
    if(!readOnly){location.href='checkout.html';return;}
    if(!CouncilActions.connected('billing.quote')||!CouncilActions.connected('billing.checkout')){U.notice(t('balance'),t('paymentUnavailable'));return;}
