@@ -3,6 +3,10 @@
  'use strict';
  const copy = {
   walletCheckoutError:["Не удалось подтвердить условия пополнения. Попробуйте ещё раз.", "Could not confirm the top-up terms. Please try again.", "无法确认充值条款，请重试。"],
+  gateTitle:["Зарегистрируйтесь или войдите","Sign up or sign in","注册或登录"],
+  gateLead:["Для работы с Council нужен аккаунт.","An account is required to use Council.","使用 Council 需要账户。"],
+  gateSignup:["Зарегистрироваться","Sign up","注册"],
+  gateSignin:["Войти","Sign in","登录"],
   walletModelOnly:["Выбирать модели", "Choose models", "选择模型"],
   walletPay:["Перейти к оплате", "Go to payment", "前往支付"],
   walletConfirmed:["К зачислению: {n} кредитов.", "To be credited: {n} credits.", "将到账：{n} 积分。"],
