@@ -24,7 +24,8 @@
   ].map(v=>Object.freeze({...v,source:sources[v.familyId]})));
   const defaults=Object.freeze(['deepseek','qwen']);
   // Provisional commercial terms for the private beta interface; server must confirm quotes.
-  const wallet=Object.freeze({currency:'USD',creditsPerUsd:1000,markupBasisPoints:5000,minTopUp:1000,creditStep:10,presets:Object.freeze([1000,5000,10000,25000]),pricingVersion:'council-wallet-2026-09-27-draft'});
+  const subscriptions=Object.freeze({plans:Object.freeze([{id:'basic',name:'Basic',amountMinor:2000,credits:20000,bonusPercent:0},{id:'pro',name:'Pro',amountMinor:5000,credits:55000,bonusPercent:10},{id:'max',name:'Max',amountMinor:10000,credits:120000,bonusPercent:20}].map(Object.freeze))});
+  const wallet=Object.freeze({currency:'USD',creditsPerUsd:1000,markupBasisPoints:10000,minTopUp:1000,creditStep:10,presets:Object.freeze([1000,5000,10000,25000]),pricingVersion:'council-subscriptions-2026-09-29-proposal'});
   const getVariant=(familyId,id)=>variants.find(v=>v.familyId===familyId&&v.id===id);
   function normalizeSelection(value){
     const ids=Array.isArray(value)?models.filter(m=>value.includes(m.id)).map(m=>m.id):[];
@@ -39,5 +40,5 @@
     if(!validVersions(ids,versions))throw new RangeError('Invalid model version');
     return ids.map(familyId=>({familyId,modelId:versions[familyId]}));
   }
-  globalThis.CouncilConfig=Object.freeze({models,variants,defaults,wallet,catalogDate,getVariant,normalizeSelection,validSelection,normalizeVersions,validVersions,selectionDetails});
+  globalThis.CouncilConfig=Object.freeze({models,variants,defaults,wallet,subscriptions,catalogDate,getVariant,normalizeSelection,validSelection,normalizeVersions,validVersions,selectionDetails});
 })();

@@ -3,18 +3,6 @@
  'use strict';
  const copy = {
   walletCheckoutError:["Не удалось подтвердить условия пополнения. Попробуйте ещё раз.", "Could not confirm the top-up terms. Please try again.", "无法确认充值条款，请重试。"],
-  sessionChecking:["Проверяем вход…","Checking your session…","正在检查登录状态…"],
-  gateTitle:["Зарегистрируйтесь или войдите","Sign up or sign in","注册或登录"],
-  gateLead:["Для работы с Council нужен аккаунт.","An account is required to use Council.","使用 Council 需要账户。"],
-  gateSignup:["Зарегистрироваться","Sign up","注册"],
-  gateSignin:["Войти","Sign in","登录"],
-  sessionError:["Не удалось проверить вход. Попробуйте ещё раз.","We couldn’t check your session. Please try again.","无法检查登录状态，请重试。"],
-  sessionRetry:["Повторить","Try again","重试"],
-  sessionUnavailable:["Вход временно недоступен. Попробуйте позже.","Sign-in is temporarily unavailable. Please try again later.","登录暂时不可用，请稍后重试。"],
-  forbidden:["Недостаточно прав","You don’t have access","没有权限"],
-  forbiddenBody:["Это действие недоступно для текущего аккаунта.","This action is not available for the current account.","当前账户无法执行此操作。"],
-  claimLocal:["Перенести на этот аккаунт","Move to this account","转移到此账户"],
-  claimLocalNote:["На этом устройстве есть обсуждения без владельца. Они не добавлены в аккаунт, пока вы сами не перенесёте их.","This device has discussions with no owner. They stay separate until you move them to this account.","此设备上有未标明所有者的讨论。只有您确认后，才会转入此账户。"],
   walletModelOnly:["Выбирать модели", "Choose models", "选择模型"],
   walletPay:["Перейти к оплате", "Go to payment", "前往支付"],
   walletConfirmed:["К зачислению: {n} кредитов.", "To be credited: {n} credits.", "将到账：{n} 积分。"],
