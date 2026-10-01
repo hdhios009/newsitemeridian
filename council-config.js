@@ -23,9 +23,18 @@
     {familyId:'qwen',id:'qwen3.7-plus-2026-05-26',name:'Qwen3.7 Plus',note:'modelBalanced',input:.40,output:1.60,tier:'qwen'}
   ].map(v=>Object.freeze({...v,source:sources[v.familyId]})));
   const defaults=Object.freeze(['deepseek','qwen']);
-  // Provisional commercial terms for the private beta interface; server must confirm quotes.
-  const subscriptions=Object.freeze({plans:Object.freeze([{id:'basic',name:'Basic',amountMinor:2000,credits:20000,bonusPercent:0},{id:'pro',name:'Pro',amountMinor:5000,credits:55000,bonusPercent:10},{id:'max',name:'Max',amountMinor:10000,credits:120000,bonusPercent:20}].map(Object.freeze))});
-  const wallet=Object.freeze({currency:'USD',creditsPerUsd:1000,markupBasisPoints:10000,minTopUp:1000,creditStep:10,presets:Object.freeze([1000,5000,10000,25000]),pricingVersion:'council-subscriptions-2026-09-29-proposal'});
+  // Proposed package terms, checked 2026-09-30. The server confirms every quote.
+  const pricingVersion='council-token-packages-2026-10-01';
+  const allowance=(modelId,input,output)=>Object.freeze({modelId,input,output});
+  const plan=(id,name,amountMinor,flashIn,flashOut,premiumIn,premiumOut,searchUnits)=>Object.freeze({id,name,amountMinor,interval:'month',searchUnits,allowances:Object.freeze([
+    allowance('deepseek-flash',flashIn,flashOut),allowance('qwen3.8-flash',flashIn,flashOut),allowance('gpt-6-sol',premiumIn,premiumOut),allowance('claude-sonnet-5',premiumIn,premiumOut)
+  ])});
+  const subscriptions=Object.freeze({pricingVersion,plans:Object.freeze([
+    plan('basic','Basic',2000,8000000,2000000,200000,50000,50),
+    plan('pro','Pro',5000,20000000,5000000,800000,200000,150),
+    plan('max','Max',10000,40000000,10000000,2000000,500000,300)
+  ])});
+  const wallet=Object.freeze({currency:'USD',creditsPerUsd:1000,markupBasisPoints:10000,minTopUp:1000,creditStep:10,presets:Object.freeze([1000,5000,10000,25000]),pricingVersion,searchApiUsd:0.008});
   const getVariant=(familyId,id)=>variants.find(v=>v.familyId===familyId&&v.id===id);
   function normalizeSelection(value){
     const ids=Array.isArray(value)?models.filter(m=>value.includes(m.id)).map(m=>m.id):[];

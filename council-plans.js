@@ -4,7 +4,7 @@
  const U=CouncilUI,I=CouncilI18n,C=CouncilConfig,{esc,t,format,money}=U;
  Object.assign(I.copy,{
  plansTitle:['Ваш темп. Ваш Council.','Your pace. Your Council.','您的节奏，您的 Council。'],
- plansLead:['Один баланс для всех моделей. Выберите подписку или пополните его на свою сумму.','One balance for every model. Choose a subscription or add your own amount.','所有模型共用一个余额。选择订阅，或按需充值。'],
+ plansLead:['Месячный пакет включает все четыре модели сразу. Нужный объём отдельно покупается в «Индивидуальном».','A monthly package includes all four models together. Buy an exact quantity separately in Custom.','月度套餐同时包含四个模型。精确数量可在「自选」中单独购买。'],
  plansHeading:['Выберите свой объём','Choose your allowance','选择您的额度'],
  monthly:['в месяц','per month','每月'], perMonth:['/ месяц','/ month','/月'],
  monthlyCredits:['{n} кредитов каждый месяц','{n} credits every month','每月 {n} 积分'],
@@ -18,11 +18,11 @@
  sameWallet:['Свободный выбор моделей','Choose your own models','自由选择模型'],
  topUpAnytime:['Можно пополнить в любой момент','Top up whenever you need','随时可以充值'],
  customPlan:['Индивидуальный','Custom','自选额度'],
- customLead:['Столько, сколько нужно вам. Один платёж, без подписки.','Just the amount you need. One payment, no subscription.','按需购买，一次付费，无需订阅。'],
- customButton:['Выбрать объём','Choose an amount','选择额度'],
+ customLead:['Выберите модели и нужное количество токенов.','Choose the models and the token quantities you need.','选择模型及所需 token 数量。'],
+ customButton:['Настроить','Configure','配置'],
  addCredits:['Пополнить','Top up','充值'],
- planTerms:['Подписка продлевается ежемесячно. Кредиты пакета действуют до конца оплаченного периода; разовые пополнения сохраняются. Отменить продление можно в управлении подпиской.','Subscriptions renew monthly. Plan credits expire at the end of the paid period; one-time top-ups remain available. Cancel renewal in subscription settings.','订阅按月自动续费。套餐积分在已付费周期结束时到期，一次性充值积分继续保留。可在订阅设置中取消续费。'],
- creditExplanation:['Кредиты — общий бюджет Council. Расход зависит от выбранных версий моделей, объёма текста и этапов обсуждения.','Credits are your shared Council budget. Usage depends on model versions, text volume and discussion rounds.','积分是 Council 的共用预算。消耗取决于模型版本、文本量及讨论轮次。'],
+ planTerms:['Подписка продлевается ежемесячно. Токены пакета действуют до конца оплаченного периода и не переносятся. Разовые покупки сохраняются. Отменить продление можно в управлении подпиской.','Subscriptions renew monthly. Package tokens last until the end of the paid period and do not roll over. One-time purchases remain. Cancel renewal in subscription settings.','订阅按月续费。套餐 token 在已付费周期结束时到期且不结转。一次性购买继续保留。可在订阅设置中取消续费。'],
+ creditExplanation:['Вход и выход списываются отдельно. Оставшиеся входящие токены не превращаются в исходящие. Квоты разных моделей не переносятся друг на друга.','Input and output are spent separately. Remaining input tokens do not become output tokens. Quotas are not moved between models.','输入和输出分别扣减。剩余输入 token 不会变成输出 token。不同模型的额度不能互转。'],
  balanceLoading:['Загружаем баланс…','Loading balance…','正在加载余额…'],
  balanceUnavailable:['Баланс пока недоступен.','Balance is currently unavailable.','暂时无法获取余额。'],
  balanceRetry:['Повторить','Try again','重试'],
@@ -48,7 +48,7 @@
  changePlan:['Изменить тариф','Change plan','更改套餐'],
  changeDone:['Смена тарифа подтверждена.','Plan change confirmed.','已确认更改套餐。'],
  quoteButton:['Перейти к оформлению','Continue to checkout','继续订购'],
- quoteTerms:['{amount} каждый месяц. {credits} кредитов на оплаченный период.','{amount} every month. {credits} credits per paid period.','每月 {amount}，每个已付费周期 {credits} 积分。'],
+ quoteTerms:['{amount} каждый месяц. {summary}','{amount} every month. {summary}','每月 {amount}。{summary}'],
  subscriptionConsent:['Согласен с ежемесячным продлением и условиями подписки.','I agree to monthly renewal and the subscription terms.','我同意按月自动续费及订阅条款。'],
  subscriptionPay:['Оформить подписку','Subscribe','订阅'],
  paymentConnecting:['Проверяем условия…','Checking terms…','正在核对条款…'],
@@ -85,9 +85,12 @@
  function current(){return snapshotOwner===user()?snapshot:null;}
  function loggedIn(){
   if(user())return true;
-  U.dialog(t('chooseLogin'),'<p class="prose">'+esc(t('balanceGuest'))+'</p><div class="dialog-actions"><a class="button subtle" href="signup.html?returnTo=balance.html">'+esc(t('signup'))+'</a><a class="button dark" href="login.html?returnTo=balance.html">'+esc(t('login'))+'</a></div>');
+  U.dialog(t('welcomeTitle'),'<p class="prose">'+esc(t('welcomeLead'))+'</p><button class="google-button" id="balance-google" type="button"><img src="assets/auth/google-g.png" width="19" height="19" alt="">'+esc(t('google'))+'</button>',{onOpen:d=>d.querySelector('#balance-google').onclick=()=>U.continueWithGoogle(d.querySelector('#balance-google'),'balance.html')});
   return false;
  }
+ function compact(n){if(I.lang==='zh'&&n%10000===0&&n>=10000)return format(n/10000)+'万';if(n%1000000===0&&n>=1000000)return (n/1000000)+(I.lang==='en'?' million':' млн');return format(n);}
+ function packageText(p){return t('packageTotal',{n:format(p.allowances.reduce((s,a)=>s+a.input+a.output,0))})+' · '+t('searchIncluded',{n:format(p.searchUnits)});}
+ function samePackage(q,p){return Array.isArray(q?.allowances)&&q.allowances.length===p.allowances.length&&p.allowances.every((row,i)=>q.allowances[i]?.modelId===row.modelId&&q.allowances[i].input===row.input&&q.allowances[i].output===row.output)&&q.searchUnits===p.searchUnits&&!(q.credits>0);}
  function custom(){
   U.dialog(t('customPlan'),'<div id="subscription-topup"></div>',{wide:true,onOpen:d=>{
    CouncilBudget.mount(d.querySelector('#subscription-topup'));
@@ -107,8 +110,8 @@
    (r?'<details class="membership-breakdown"><summary>'+esc(t('balanceBreakdown'))+'</summary><div><p><span>'+esc(t('monthlyRemaining'))+'</span><strong>'+num(r.subscriptionCredits)+'</strong><small>'+(r.subscriptionCredits>0?esc(t('expiresOn',{date:date(r.creditsExpireAt)})):'—')+'</small></p><p><span>'+esc(t('purchasedRemaining'))+'</span><strong>'+num(r.topUpCredits)+'</strong><small>'+esc(t('noExpiry'))+'</small></p></div></details>':'')+'</section>'+
    '<section aria-labelledby="plans-heading"><h2 class="plans-section-title" id="plans-heading">'+esc(t('plansHeading'))+'</h2><div class="subscription-grid">'+C.subscriptions.plans.map(p=>{
     const active=s?.planId===p.id,scheduled=s?.nextPlanId===p.id;
-    return '<article class="subscription-card'+(p.id==='pro'?' subscription-card-pro':'')+'"><div class="plan-name-row"><h3>'+esc(p.name)+'</h3>'+(p.bonusPercent?'<span class="plan-bonus">+'+p.bonusPercent+'%</span>':'')+'</div><p class="plan-description">'+esc(t('plan'+p.name))+'</p><p class="plan-price"><strong>'+esc(money(p.amountMinor/100))+'</strong><span>'+esc(t('perMonth'))+'</span></p><p class="plan-allowance">'+esc(t('monthlyCredits',{n:format(p.credits)}))+'</p><ul><li>'+esc(t('sameWallet'))+'</li><li>'+esc(t('topUpAnytime'))+'</li><li>'+(p.bonusPercent?esc(t('planBonus',{n:p.bonusPercent})):esc(t('allModels')))+'</li></ul><button class="button '+(p.id==='pro'?'dark':'subtle')+' full" data-plan="'+p.id+'" '+(active||scheduled?'disabled':'')+'>'+esc(active?t('currentPlan'):scheduled?t('scheduledPlan'):t('planSelect',{name:p.name}))+'</button></article>';
-   }).join('')+'</div><p class="plans-bonus-note">'+esc(t('planBonusNote'))+'</p><article class="custom-plan-row"><div><h3>'+esc(t('customPlan'))+'</h3><p>'+esc(t('customLead'))+'</p></div><button class="button subtle" data-custom>'+esc(t('customButton'))+U.icon('chevron')+'</button></article><div class="plans-explanation"><p>'+esc(t('planTerms'))+'</p><p>'+esc(t('creditExplanation'))+'</p><a class="text-link" href="terms.html">'+esc(t('terms'))+'</a></div></section>'+
+    return '<article class="subscription-card'+(p.id==='pro'?' subscription-card-pro':'')+'"><div class="plan-name-row"><h3>'+esc(p.name)+'</h3></div><p class="plan-description">'+esc(t('plan'+p.name))+'</p><p class="plan-price"><strong>'+esc(money(p.amountMinor/100))+'</strong><span>'+esc(t('perMonth'))+'</span></p><ul class="plan-quotas">'+p.allowances.map(a=>{const v=C.variants.find(x=>x.id===a.modelId);return '<li><strong>'+esc(v.name)+'</strong><span>'+esc(format(a.input+a.output))+'</span><small>'+esc(t('millionInOut',{in:compact(a.input),out:compact(a.output)}))+'</small></li>';}).join('')+'<li><strong>'+esc(t('searchUnits'))+'</strong><span>'+esc(format(p.searchUnits))+'</span></li></ul><p class="plan-allowance">'+esc(packageText(p))+'</p><button class="button '+(p.id==='pro'?'dark':'subtle')+' full" data-plan="'+p.id+'" '+(active||scheduled?'disabled':'')+'>'+esc(active?t('currentPlan'):scheduled?t('scheduledPlan'):t('planSelect',{name:p.name}))+'</button></article>';
+   }).join('')+'</div><p class="plans-bonus-note">'+esc(t('packageTogether'))+'</p><article class="custom-plan-row"><div><h3>'+esc(t('customPlan'))+'</h3><p>'+esc(t('customLead'))+'</p></div><button class="button subtle" data-custom>'+esc(t('customButton'))+U.icon('chevron')+'</button></article><div class="plans-explanation"><p>'+esc(t('planTerms'))+'</p><p>'+esc(t('creditExplanation'))+'</p><a class="text-link" href="terms.html">'+esc(t('terms'))+'</a></div></section>'+
    '<section class="billing-history"><h2 class="plans-section-title">'+esc(t('transactions'))+'</h2>'+(r?(r.transactions.length?'<div class="billing-table-wrap"><table><thead><tr><th>'+esc(t('operationDate'))+'</th><th>'+esc(t('operationType'))+'</th><th>'+esc(t('operationCredits'))+'</th></tr></thead><tbody>'+r.transactions.map(x=>'<tr><td>'+esc(date(x.createdAt))+'</td><td>'+esc(t('tx_'+x.type))+'</td><td>'+esc(num(x.credits))+'</td></tr>').join('')+'</tbody></table></div>':'<p>'+esc(t('historyEmpty'))+'</p>'):'<p>'+esc(t(user()?'historyUnavailable':'balanceGuest'))+'</p>')+'</section>';
   mounted.querySelectorAll('[data-add],[data-custom]').forEach(b=>b.onclick=custom);
   mounted.querySelector('[data-manage]')?.addEventListener('click',manage);
@@ -138,15 +141,16 @@
   const p=plan(id);if(!p)return;
   const s=current()?.subscription;
   if(s){schedule(id);return;}
-  U.dialog(p.name,'<p class="subscription-confirm-price">'+esc(money(p.amountMinor/100))+' <span>'+esc(t('perMonth'))+'</span></p><p class="prose">'+esc(t('monthlyCredits',{n:format(p.credits)}))+'</p><p class="subscription-conditions">'+esc(t('planTerms'))+'</p><div class="dialog-actions"><button class="button dark" data-get-subscription>'+esc(t('quoteButton'))+'</button></div>',{onOpen:d=>d.querySelector('[data-get-subscription]').onclick=e=>{
+  U.dialog(p.name,'<p class="subscription-confirm-price">'+esc(money(p.amountMinor/100))+' <span>'+esc(t('perMonth'))+'</span></p><p class="prose">'+esc(packageText(p))+'</p><p class="subscription-conditions">'+esc(t('planTerms'))+'</p><div class="dialog-actions"><button class="button dark" data-get-subscription>'+esc(t('quoteButton'))+'</button></div>',{onOpen:d=>d.querySelector('[data-get-subscription]').onclick=e=>{
    guarded('billing.subscription.quote',{planId:p.id,pricingVersion:C.wallet.pricingVersion},e.currentTarget,(q,owner)=>{
-    if(!q||q.userId!==owner||typeof q.id!=='string'||!q.id||q.planId!==p.id||q.credits!==p.credits||q.amountMinor!==p.amountMinor||q.currency!=='USD'||q.interval!=='month'||q.recurring!==true||q.pricingVersion!==C.wallet.pricingVersion||!isDate(q.expiresAt)||Date.parse(q.expiresAt)<=Date.now()||typeof q.description!=='string'||!q.description)throw new Error('Invalid subscription quote');
+    if(!q||q.userId!==owner||typeof q.id!=='string'||!q.id||q.planId!==p.id||!samePackage(q,p)||q.amountMinor!==p.amountMinor||q.currency!=='USD'||q.interval!=='month'||q.recurring!==true||q.pricingVersion!==C.wallet.pricingVersion||!isDate(q.expiresAt)||Date.parse(q.expiresAt)<=Date.now()||typeof q.description!=='string'||!q.description)throw new Error('Invalid subscription quote');
     confirmQuote(q,owner);
    });
   }});
  }
  function confirmQuote(q,owner){
-  U.dialog(t('subscriptionPay'),'<p class="subscription-confirm-price">'+esc(money(q.amountMinor/100))+' <span>'+esc(t('perMonth'))+'</span></p><p class="prose">'+esc(t('quoteTerms',{amount:money(q.amountMinor/100),credits:format(q.credits)}))+'</p><p class="subscription-conditions">'+esc(q.description)+'</p><p class="subscription-conditions">'+esc(t('nextPaymentTerms'))+'</p><label class="subscription-consent"><input id="subscription-consent" type="checkbox"><span>'+esc(t('subscriptionConsent'))+' <a href="terms.html" target="_blank" rel="noopener">'+esc(t('terms'))+'</a></span></label><div class="dialog-actions"><button class="button dark" data-subscribe disabled>'+esc(t('subscriptionPay'))+'</button></div>',{onOpen:d=>{
+  const p=plan(q.planId);if(!p)return;
+  U.dialog(t('subscriptionPay'),'<p class="subscription-confirm-price">'+esc(money(q.amountMinor/100))+' <span>'+esc(t('perMonth'))+'</span></p><p class="prose">'+esc(t('quoteTerms',{amount:money(q.amountMinor/100),summary:packageText(p)}))+'</p><p class="subscription-conditions">'+esc(q.description)+'</p><p class="subscription-conditions">'+esc(t('nextPaymentTerms'))+'</p><label class="subscription-consent"><input id="subscription-consent" type="checkbox"><span>'+esc(t('subscriptionConsent'))+' <a href="terms.html" target="_blank" rel="noopener">'+esc(t('terms'))+'</a></span></label><div class="dialog-actions"><button class="button dark" data-subscribe disabled>'+esc(t('subscriptionPay'))+'</button></div>',{onOpen:d=>{
    const consent=d.querySelector('#subscription-consent'),button=d.querySelector('[data-subscribe]');
    consent.onchange=()=>button.disabled=!consent.checked;
    button.onclick=()=>{if(!consent.checked||owner!==user())return;if(Date.parse(q.expiresAt)<=Date.now()){U.notice(t('balance'),t('subscriptionError'));return;}
@@ -158,7 +162,7 @@
  }
  function schedule(id){
   const s=current()?.subscription,p=plan(id);if(!s||!p)return;
-  U.dialog(t('changePlan'),'<p class="prose">'+esc(t('nextPlan',{name:p.name,date:date(s.periodEnd)}))+'</p><p class="subscription-conditions">'+esc(t('changeExplanation'))+'</p><p class="prose">'+esc(t('quoteTerms',{amount:money(p.amountMinor/100),credits:format(p.credits)}))+'</p><div class="dialog-actions"><button class="button dark" data-confirm-change>'+esc(t('changePlan'))+'</button></div>',{onOpen:d=>d.querySelector('[data-confirm-change]').onclick=e=>guarded('billing.subscription.change',{planId:p.id,pricingVersion:C.wallet.pricingVersion},e.currentTarget,(r,owner)=>{
+  U.dialog(t('changePlan'),'<p class="prose">'+esc(t('nextPlan',{name:p.name,date:date(s.periodEnd)}))+'</p><p class="subscription-conditions">'+esc(t('changeExplanation'))+'</p><p class="prose">'+esc(packageText(p))+'</p><div class="dialog-actions"><button class="button dark" data-confirm-change>'+esc(t('changePlan'))+'</button></div>',{onOpen:d=>d.querySelector('[data-confirm-change]').onclick=e=>guarded('billing.subscription.change',{planId:p.id,pricingVersion:C.wallet.pricingVersion},e.currentTarget,(r,owner)=>{
    if(r?.userId!==owner||r.accepted!==true||r.scheduledPlanId!==p.id||!isDate(r.effectiveAt)||Date.parse(r.effectiveAt)<=Date.now())throw new Error('Invalid change response');U.closeDialog();U.toast(t('changeDone'));load();
   })});
  }

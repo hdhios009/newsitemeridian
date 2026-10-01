@@ -1,7 +1,7 @@
 /* UI-to-backend boundary. This file never calls a model, stores credentials or takes a payment. */
 (() => {
   'use strict';
-  const allowed=new Set(['discussion.create','discussion.reply','discussion.cancel','history.list','history.get','history.rename','history.delete','session.get','auth.logout','auth.register','auth.login','auth.google','auth.verify','auth.resend','auth.recover','auth.reset','profile.update','account.export','account.delete','account.sessions.revoke','billing.balance','billing.quote','billing.checkout','billing.subscription.quote','billing.subscription.change','billing.subscription.cancel','support.send']);
+  const allowed=new Set(['discussion.create','discussion.reply','discussion.cancel','runs.resume','history.list','history.get','history.rename','history.delete','session.get','auth.logout','auth.register','auth.login','auth.google','auth.verify','auth.resend','auth.recover','auth.reset','profile.update','account.export','account.delete','account.sessions.revoke','billing.balance','billing.quote','billing.checkout','billing.subscription.quote','billing.subscription.change','billing.subscription.cancel','support.send']);
   class IntegrationRequired extends Error {
     constructor(action){super('Server handler is not connected.');this.name='IntegrationRequired';this.code='INTEGRATION_REQUIRED';this.action=action;}
   }
